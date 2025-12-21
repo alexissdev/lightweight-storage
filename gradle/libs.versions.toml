@@ -2,9 +2,9 @@
 annotations = "23.0.0"
 
 # mongo distributions
-mongo-jack = "4.3.0"
 mongo-driver = "4.4.1"
 
+# jedis distributions
 jedis = "4.1.1"
 
 # spigot distributions
@@ -14,9 +14,9 @@ spigot = "1.8.8-R0.1-SNAPSHOT"
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
 
 # mongo distributions
-mongo-jack = { module = "org.mongojack:mongojack", name = "mongo-jack", version.ref = "mongo-jack" }
 mongo-driver = { module = "org.mongodb:mongodb-driver-sync", name = "mongo-driver", version.ref = "mongo-driver" }
 
+# jedis distributions
 jedis = { group = "redis.clients", name = "jedis", version.ref = "jedis" }
 
 # spigon distributions
