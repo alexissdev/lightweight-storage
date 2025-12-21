@@ -1,0 +1,51 @@
+package dev.alexissdev.storage.dist;
+
+import dev.alexissdev.storage.ModelService;
+import dev.alexissdev.storage.model.Model;
+import dev.alexissdev.storage.resolve.ResolverRegistry;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.concurrent.Executor;
+
+public class DelegatedCachedModelService<T extends Model>
+        extends CachedRemoteModelService<T> {
+
+    protected final ModelService<T> delegate;
+
+    public DelegatedCachedModelService(
+            Executor executor,
+            ModelService<T> cacheModelService,
+            ResolverRegistry<T> resolverRegistry,
+            ModelService<T> delegate
+    ) {
+        super(executor, cacheModelService, resolverRegistry);
+        this.delegate = delegate;
+    }
+
+    @Override
+    public List<T> findSync(@NotNull String field, @NotNull String value) {
+        return delegate.findSync(field, value);
+    }
+
+    @Override
+    protected void internalSave(T model) {
+        delegate.saveSync(model);
+    }
+
+    @Override
+    protected void internalDelete(T model) {
+        delegate.deleteSync(model);
+    }
+
+    @Override
+    protected @Nullable T internalFind(String id) {
+        return delegate.findSync(id);
+    }
+
+    @Override
+    protected List<T> internalFindAll() {
+        return delegate.findAllSync();
+    }
+}
