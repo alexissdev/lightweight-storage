@@ -1,7 +1,17 @@
 rootProject.name = "lightweight-storage"
 
-include("api")
-include("api-codec")
-include("mongo-legacy-dist")
-include("bukkit-yaml-dist")
-include("redis-dist")
+arrayOf(
+    "api", "api-codec", "mongo-legacy-dist",
+    "redis-dist", "bukkit-yaml-dist"
+).forEach {
+    includePrefixed(it)
+}
+
+fun includePrefixed(name: String) {
+    val kebabName = name.replace(':', '-')
+    val path = name.replace(':', '/')
+    val baseName = "${rootProject.name}-$kebabName"
+
+    include(baseName)
+    project(":$baseName").projectDir = file(path)
+}
