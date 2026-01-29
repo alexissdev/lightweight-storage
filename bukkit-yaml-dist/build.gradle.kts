@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":api-codec"))
+    api(project(":lightweight-storage-api-codec"))
     compileOnly(libs.spigot)
 }

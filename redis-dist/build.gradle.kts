@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":api"))
+    api(project(":lightweight-storage-api"))
     api(libs.jedis)
 }
