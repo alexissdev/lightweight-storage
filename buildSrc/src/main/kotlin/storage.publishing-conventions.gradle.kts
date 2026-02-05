@@ -6,6 +6,7 @@ plugins {
 publishing {
     publications {
         create<MavenPublication>("maven") {
+            artifactId = project.name
             from(components["java"])
         }
     }
